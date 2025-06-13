@@ -1,13 +1,10 @@
 services:
   - type: web
-    name: audio-echo-app
-    env: docker
+    name: echo-cancel-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     plan: free
-    region: singapore
-    dockerContext: .
-    dockerfilePath: Dockerfile
-    autoDeploy: true
-    branch: main
     envVars:
       - key: PORT
         value: 8000
