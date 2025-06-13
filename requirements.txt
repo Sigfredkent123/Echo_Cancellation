@@ -3,3 +3,4 @@ pydub
 numpy
 matplotlib
 scipy
+gunicorn
