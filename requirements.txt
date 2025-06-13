@@ -1,6 +1,6 @@
 Flask
+gunicorn
 pydub
 numpy
-matplotlib
 scipy
-gunicorn
+matplotlib
