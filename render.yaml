@@ -1,10 +1,13 @@
 services:
   - type: web
     name: audio-echo-app
-    env: python
+    env: docker
     plan: free
     region: singapore
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT"
+    dockerContext: .
+    dockerfilePath: Dockerfile
     autoDeploy: true
     branch: main
+    envVars:
+      - key: PORT
+        value: 8000
