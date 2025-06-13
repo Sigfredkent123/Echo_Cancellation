@@ -1,26 +1,23 @@
-# Dockerfile
-
 FROM python:3.11-slim
 
-# Install system dependencies for pydub (ffmpeg) and cleanup
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install ffmpeg and system dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
 
-# Copy and install Python dependencies
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-# Copy your application files
+# Copy files
 COPY . .
 
-# Set the port for Render
-ENV PORT 8000
+# Install Python dependencies
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Expose port
 EXPOSE 8000
 
-# Start the app with gunicorn
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:$PORT"]
+# Run the app
+CMD ["python", "app.py"]
