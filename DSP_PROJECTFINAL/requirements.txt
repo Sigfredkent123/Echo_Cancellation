@@ -1,5 +1,0 @@
-Flask
-pydub
-numpy
-matplotlib
-scipy
