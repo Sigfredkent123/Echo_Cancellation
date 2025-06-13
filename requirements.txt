@@ -1,6 +1,5 @@
 Flask
-gunicorn
 pydub
 numpy
-scipy
 matplotlib
+scipy
