@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: audio-echo-app
+    env: docker
+    plan: free
+    region: singapore  # or use 'oregon', 'frankfurt', etc.
+    dockerContext: .  # Use the root as Docker context
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    branch: main  # or the branch you're using
+    envVars:
+      - key: PORT
+        value: 8000
